@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>꼭짓점 — 현장용 핸디북</title>
+<title>꼭짓점 — 핸디북</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Serif+KR:wght@200;300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
@@ -125,13 +125,17 @@ header.top h1{
 .sp-title{font-weight:700; font-size:15px; opacity:.85; flex:1;}
 .sp-desc p{font-size:14.5px; line-height:1.85; margin:0 0 13px; opacity:.88;}
 .sp-desc p.na{font-style:italic; color:#7a4a1f;}
+.sp-desc p.script-dialogue{
+  padding-left:14px; border-left:2px solid rgba(42,33,56,.18); font-weight:400; color:var(--paper-ink);
+}
+.script-speaker{font-weight:700; letter-spacing:.2px; margin-right:7px;}
 .sp-dialogue{margin-top:8px;}
 .sp-dline{margin:0 0 11px; font-size:14.5px; line-height:1.7;}
 .sp-dline .sp-speaker{font-weight:700; letter-spacing:.5px;}
 .sp-dline.na{font-style:italic; opacity:.75; padding-left:14px; border-left:2px solid #c79a4f;}
 .sp-pagefoot{position:absolute; bottom:16px; right:24px; font-family:'Space Mono',monospace; font-size:10.5px; opacity:.4;}
 
-/* ---- 스토리북 (flipbook) page styling ---- */
+/* ---- 콘티북 (flipbook) page styling ---- */
 .story-page{
   background: rgba(36,26,63,.5); border:1px solid var(--line); border-radius:6px;
   box-shadow:0 18px 50px rgba(0,0,0,.45);
@@ -169,11 +173,18 @@ header.top h1{
 .card-desc{font-size:13.5px; opacity:.78; line-height:1.7;}
 .card-icon{font-size:34px;}
 .card-count{font-family:'Space Mono',monospace; font-size:11px; opacity:.6;}
-.card-scenes{display:flex; flex-wrap:wrap; gap:6px; margin-top:4px;}
+.card-note{font-size:12.5px; line-height:1.6; color:var(--gold); opacity:.86;}
+.bundle-badge{
+  align-self:flex-start; font-family:'Space Mono',monospace; font-size:10px; letter-spacing:.5px;
+  color:var(--night-deep); background:var(--gold); border-radius:3px; padding:3px 7px;
+}
+.card-scenes{display:flex; flex-wrap:wrap; align-content:flex-start; gap:6px; margin-top:4px;}
 .scene-pill{
   font-family:'Space Mono',monospace; font-size:10px; border:1px solid var(--line); border-radius:12px; padding:3px 8px;
-  cursor:pointer; opacity:.75; background:rgba(255,255,255,.03);
+  cursor:pointer; opacity:.75; background:rgba(255,255,255,.03); color:var(--cream);
+  display:inline-flex; align-items:center; justify-content:center; min-width:30px; min-height:24px; line-height:1; white-space:nowrap;
 }
+.scene-pill:disabled{cursor:default;}
 .scene-pill:hover{opacity:1; border-color:var(--sunset); color:var(--gold);}
 
 footer{
@@ -194,10 +205,10 @@ footer{
 <header class="top">
   <div class="wrap">
     <div class="kicker">studioAim · 〈꼭짓점〉 · ON-SET PRODUCTION EDITION</div>
-    <h1>꼭짓점 — 현장용 웹툰북</h1>
+    <h1>꼭짓점 — 핸디북</h1>
     <nav class="tabnav">
       <button class="tab-btn active" data-tab="script"><span class="num">01</span>대본</button>
-      <button class="tab-btn" data-tab="storybook"><span class="num">02</span>스토리북</button>
+      <button class="tab-btn" data-tab="storybook"><span class="num">02</span>콘티북</button>
       <button class="tab-btn" data-tab="cast"><span class="num">03</span>등장인물</button>
       <button class="tab-btn" data-tab="locations"><span class="num">04</span>촬영장소</button>
     </nav>
@@ -220,7 +231,7 @@ footer{
   </div>
 </div>
 
-<!-- 02 스토리북 : visual flip-through -->
+<!-- 02 콘티북 : visual flip-through -->
 <div class="view" id="view-storybook">
   <div class="wrap">
     
@@ -247,14 +258,14 @@ footer{
 <!-- 04 촬영장소 -->
 <div class="view" id="view-locations">
   <div class="wrap">
-    <p class="section-intro">씬에 등장하는 로케이션을 그룹별로 정리했습니다. 장소를 클릭하면 해당 장소가 나오는 씬으로 이동합니다.</p>
+    <p class="section-intro">씬에 등장하는 로케이션을 그룹별로 정리했습니다. 제안상 여러 씬이 한 장소 묶음에 걸린 경우도 있으니, 카드 안의 연결 씬을 모두 확인한 뒤 원하는 씬 번호를 눌러 이동하세요.</p>
     <div class="grid-cards" id="locGrid"></div>
   </div>
 </div>
 
 <footer>
-  ‘눈물 짜는 청춘영화’는 가라! ‘웃고 나면 현실이 남는 청춘 코미디’ — 제작 ㈜스튜디오아임 · 현장용 웹툰북 EDITION<br>
-  콘티 패널은 인물 배치/구도 참고용 약식 다이어그램이며, 실제 촬영 콘티를 대체하지 않습니다.
+  ‘눈물 짜는 청춘영화’는 가라! ‘웃고 나면 현실이 남는 청춘 코미디’ — 제작 ㈜스튜디오아임 · 핸디북 EDITION<br>
+  콘티 패널은 인물 배치/구도 참고용 약식 스케치이며, 실제 촬영 콘티를 대체하지 않습니다.
 </footer>
 
 <script type="application/json" id="scene-data">
@@ -335,14 +346,13 @@ function seedFromString(s){
   return function(){ h ^= h<<13; h^=h>>>17; h^=h<<5; h=h>>>0; return (h%1000)/1000; };
 }
 
-// ===== build a storyboard panel SVG =====
+// ===== build a conti sketch panel SVG =====
 function buildPanelSVG(scene){
   const W=400, H=246;
   const rand = seedFromString(scene.num+scene.location);
-  const [g1,g2] = timeGradient(scene.time);
   const chars = scene.characters.filter(c => !['모두','멤버들'].includes(c));
   const n = chars.length;
-  const icon = locIcon(scene.location);
+  const text = `${scene.location} ${scene.title} ${scene.description.join(' ')}`;
 
   let shotLabel = 'WIDE';
   if(n===0) shotLabel='ESTABLISHING';
@@ -351,70 +361,155 @@ function buildPanelSVG(scene){
   else if(n>=5) shotLabel='ENSEMBLE';
   else shotLabel='GROUP';
 
+  function sketchLine(x1,y1,x2,y2, extra=''){
+    const dx = (rand()-.5)*2.4, dy = (rand()-.5)*2.4;
+    return `<line x1="${x1}" y1="${y1}" x2="${x2+dx}" y2="${y2+dy}" ${extra}/>`;
+  }
+  function sketchRect(x,y,w,h, extra=''){
+    const j = ()=>(rand()-.5)*2.4;
+    return `<path d="M ${x+j()} ${y+j()} L ${x+w+j()} ${y+j()} L ${x+w+j()} ${y+h+j()} L ${x+j()} ${y+h+j()} Z" ${extra}/>`;
+  }
+  function sketchEllipse(cx,cy,rx,ry, extra=''){
+    return `<ellipse cx="${cx+(rand()-.5)*1.5}" cy="${cy+(rand()-.5)*1.5}" rx="${rx}" ry="${ry}" ${extra}/>`;
+  }
+  function label(txt,x,y){
+    return `<text x="${x}" y="${y}" font-family="Noto Serif KR,serif" font-size="9.5" fill="#5a5147" opacity="0.65">${escapeXML(txt)}</text>`;
+  }
+  const ink = 'stroke="#2a2138" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" fill="none"';
+  const thin = 'stroke="#2a2138" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".72"';
+
+  let set = '';
+  if(/공연장|무대|콘서트|버스킹|노래|마이크/.test(text)){
+    set += sketchRect(26,139,348,58, ink);
+    set += sketchLine(62,62,38,134, thin) + sketchLine(338,62,362,134, thin);
+    set += sketchLine(118,64,118,137, thin) + sketchEllipse(118,58,13,5, thin);
+    set += sketchLine(282,64,282,137, thin) + sketchEllipse(282,58,13,5, thin);
+    set += sketchLine(200,91,200,151, ink) + sketchEllipse(200,84,11,6, ink);
+    set += sketchLine(188,151,212,151, ink);
+    set += label('무대 / 마이크', 26, 132);
+    for(let i=0;i<8;i++) set += sketchEllipse(54+i*38,216+(i%2)*5,10,5, thin);
+  } else if(/편의점/.test(text)){
+    set += sketchRect(25,58,118,105, ink) + sketchRect(256,58,118,105, ink);
+    for(let i=0;i<4;i++) set += sketchLine(35,80+i*21,134,80+i*21, thin) + sketchLine(266,80+i*21,365,80+i*21, thin);
+    set += sketchRect(151,106,94,42, ink);
+    set += sketchRect(166,76,64,22, thin);
+    set += sketchLine(187,148,187,181, thin) + sketchLine(210,148,210,181, thin);
+    set += label('편의점 카운터', 151, 101);
+  } else if(/독서실/.test(text)){
+    set += sketchRect(58,83,284,66, ink);
+    set += sketchLine(94,149,80,193, thin) + sketchLine(306,149,320,193, thin);
+    set += sketchRect(74,52,90,26, thin) + sketchRect(236,52,90,26, thin);
+    set += sketchRect(180,102,42,26, thin);
+    set += label('조용한 독서실', 58, 78);
+  } else if(/차 안|도로|정거장|차량/.test(text)){
+    set += sketchRect(50,78,300,87, ink);
+    set += sketchLine(92,78,124,45, thin) + sketchLine(308,78,276,45, thin) + sketchLine(124,45,276,45, thin);
+    set += sketchEllipse(112,165,26,26, ink) + sketchEllipse(288,165,26,26, ink);
+    set += sketchRect(164,91,72,40, thin);
+    set += label('차량 이동', 56, 72);
+  } else if(/호프집|마차|포차|사케|식당/.test(text)){
+    set += sketchEllipse(200,145,88,25, ink);
+    set += sketchLine(136,145,118,191, thin) + sketchLine(264,145,282,191, thin);
+    set += sketchRect(65,72,78,44, thin) + sketchRect(258,72,78,44, thin);
+    for(let i=0;i<5;i++) set += sketchRect(155+i*19,123-(i%2)*4,10,21, thin);
+    set += label(/식당/.test(text)?'상견례 테이블':'술자리 테이블', 68, 66);
+  } else if(/연습실/.test(text)){
+    set += sketchRect(34,96,82,65, ink) + sketchRect(282,96,82,65, ink);
+    set += sketchLine(42,112,108,112, thin) + sketchLine(292,112,356,112, thin);
+    set += sketchEllipse(193,123,23,33, ink);
+    set += sketchLine(216,107,270,83, ink) + sketchEllipse(271,82,12,5, thin);
+    set += sketchLine(200,91,200,167, thin) + sketchEllipse(200,84,11,6, thin);
+    set += label('밴드 연습실', 34, 88);
+  } else if(/공사장/.test(text)){
+    set += sketchLine(48,160,352,160, ink) + sketchLine(78,160,126,72, ink) + sketchLine(126,72,240,72, ink);
+    set += sketchLine(240,72,240,135, thin) + sketchRect(228,135,24,18, thin);
+    set += sketchRect(70,114,82,46, thin) + sketchLine(70,114,152,160, thin) + sketchLine(152,114,70,160, thin);
+    set += label('공사장', 48, 153);
+  } else if(/카페/.test(text)){
+    set += sketchRect(54,93,292,60, ink);
+    set += sketchRect(75,60,70,28, thin) + sketchRect(255,60,70,28, thin);
+    set += sketchEllipse(176,119,9,14, thin) + sketchEllipse(202,119,9,14, thin) + sketchEllipse(228,119,9,14, thin);
+    set += label('카페 카운터', 54, 87);
+  } else if(/마트/.test(text)){
+    set += sketchRect(44,69,88,96, ink) + sketchRect(266,69,88,96, ink);
+    set += sketchLine(54,94,122,94, thin) + sketchLine(276,94,344,94, thin);
+    set += sketchRect(156,121,77,44, thin) + sketchEllipse(171,169,8,8, thin) + sketchEllipse(221,169,8,8, thin);
+    set += label('마트 / 카트', 44, 63);
+  } else if(/집|방|원룸|부모님/.test(text)){
+    set += sketchRect(46,123,121,48, ink) + sketchLine(46,123,78,91, ink) + sketchRect(244,82,82,74, thin);
+    set += sketchRect(182,118,42,36, thin);
+    set += sketchLine(0,199,400,199, thin);
+    set += label(/부모/.test(text)?'부모님 집':'방 / 원룸', 46, 116);
+  } else if(/골목|거리/.test(text)){
+    set += sketchLine(42,195,155,76, ink) + sketchLine(358,195,245,76, ink);
+    set += sketchRect(34,92,74,83, thin) + sketchRect(292,92,74,83, thin);
+    set += sketchLine(150,196,250,196, thin);
+    set += label('골목 / 거리', 42, 188);
+  } else {
+    set += sketchLine(20,190,380,190, ink);
+    set += sketchRect(50,78,96,84, thin) + sketchRect(254,78,96,84, thin);
+    set += sketchEllipse(200,121,34,20, thin);
+    set += label('장면 스케치', 50, 72);
+  }
+
   let figures = '';
-  const showN = Math.min(n,5);
+  const showN = Math.min(Math.max(n, scene.location==='intro'?2:1),5);
   for(let i=0;i<showN;i++){
-    const name = chars[i];
+    const name = chars[i] || (i===0 ? '인물' : '상대');
     const col = charColor(name);
     const slot = (i+0.5)/showN;
-    const jitterX = (rand()-0.5)*16;
-    const jitterY = (rand()-0.5)*10;
+    const jitterX = (rand()-0.5)*20;
+    const jitterY = (rand()-0.5)*8;
     const cx = 36 + slot*(W-72) + jitterX;
-    const scale = 0.78 + rand()*0.4;
-    const headR = 17*scale;
-    const bodyW = 40*scale, bodyH = 64*scale;
-    const baseY = H-30+jitterY;
-    const headCY = baseY - bodyH - headR + 6;
+    const scale = 0.84 + rand()*0.32;
+    const baseY = 192+jitterY;
+    const headY = baseY - 66*scale;
+    const shoulderY = baseY - 43*scale;
+    const labelText = name.length > 4 ? name.slice(0,4) : name;
     figures += `
-      <g opacity="0.96">
-        <ellipse cx="${cx.toFixed(1)}" cy="${(baseY+6).toFixed(1)}" rx="${(bodyW*0.6).toFixed(1)}" ry="6" fill="#000" opacity="0.25"/>
-        <path d="M ${(cx-bodyW/2).toFixed(1)} ${baseY.toFixed(1)} Q ${cx.toFixed(1)} ${(baseY-bodyH-10).toFixed(1)} ${(cx+bodyW/2).toFixed(1)} ${baseY.toFixed(1)} Z"
-          fill="${col}" stroke="#15102b" stroke-width="2"/>
-        <circle cx="${cx.toFixed(1)}" cy="${headCY.toFixed(1)}" r="${headR.toFixed(1)}" fill="${col}" stroke="#15102b" stroke-width="2"/>
+      <g opacity="0.95">
+        <ellipse cx="${cx.toFixed(1)}" cy="${(baseY+4).toFixed(1)}" rx="${(20*scale).toFixed(1)}" ry="4.5" fill="#2a2138" opacity="0.12"/>
+        <circle cx="${cx.toFixed(1)}" cy="${headY.toFixed(1)}" r="${(12*scale).toFixed(1)}" fill="#fbf6ea" stroke="${col}" stroke-width="2.2"/>
+        <path d="M ${(cx-22*scale).toFixed(1)} ${shoulderY.toFixed(1)} Q ${cx.toFixed(1)} ${(shoulderY-13*scale).toFixed(1)} ${(cx+22*scale).toFixed(1)} ${shoulderY.toFixed(1)}" stroke="${col}" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M ${cx.toFixed(1)} ${(headY+13*scale).toFixed(1)} C ${(cx-3*scale).toFixed(1)} ${(headY+34*scale).toFixed(1)} ${(cx+5*scale).toFixed(1)} ${(baseY-20*scale).toFixed(1)} ${cx.toFixed(1)} ${baseY.toFixed(1)}" stroke="#2a2138" stroke-width="2.1" fill="none" stroke-linecap="round"/>
+        <path d="M ${(cx-17*scale).toFixed(1)} ${(shoulderY+5*scale).toFixed(1)} Q ${(cx-34*scale).toFixed(1)} ${(shoulderY+25*scale).toFixed(1)} ${(cx-18*scale).toFixed(1)} ${(baseY-8*scale).toFixed(1)}" stroke="#2a2138" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <path d="M ${(cx+17*scale).toFixed(1)} ${(shoulderY+5*scale).toFixed(1)} Q ${(cx+34*scale).toFixed(1)} ${(shoulderY+25*scale).toFixed(1)} ${(cx+18*scale).toFixed(1)} ${(baseY-8*scale).toFixed(1)}" stroke="#2a2138" stroke-width="1.7" fill="none" stroke-linecap="round"/>
+        <text x="${cx.toFixed(1)}" y="${(baseY+18).toFixed(1)}" text-anchor="middle" font-family="Noto Serif KR,serif" font-size="9" fill="#2a2138" opacity=".72">${escapeXML(labelText)}</text>
       </g>`;
   }
 
-  const descAll = scene.description.join(' ');
   let speedLines = '';
-  if(/고속|깜짝|도망|뛰|급하게|당황/.test(descAll)){
+  if(/고속|깜짝|도망|뛰|급하게|당황|때린|소리친/.test(text)){
     for(let i=0;i<5;i++){
-      const y = 14 + i*9;
-      speedLines += `<line x1="${W-70-rand()*30}" y1="${y}" x2="${W-10}" y2="${y}" stroke="${g2}" stroke-width="2" opacity="0.35"/>`;
+      const y = 24 + i*10;
+      speedLines += sketchLine(W-92-rand()*26, y, W-18, y+(rand()-.5)*8, 'stroke="#e8703a" stroke-width="1.8" stroke-linecap="round" opacity=".55"');
     }
   }
   let talkMark = '';
   if(scene.dialogue.length > 6){
-    talkMark = `<g transform="translate(${W-46},${H-40})" opacity="0.85">
-      <path d="M0 14 Q0 0 16 0 L34 0 Q40 0 40 8 L40 18 Q40 26 32 26 L14 26 L4 34 L8 24 Q0 22 0 14 Z" fill="${g2}"/>
-      <circle cx="11" cy="13" r="2" fill="#15102b"/><circle cx="20" cy="13" r="2" fill="#15102b"/><circle cx="29" cy="13" r="2" fill="#15102b"/>
+    talkMark = `<g transform="translate(${W-58},30)" opacity="0.75">
+      <path d="M0 14 Q0 0 16 0 L42 0 Q50 0 50 9 L50 23 Q50 32 39 32 L16 32 L5 42 L9 31 Q0 28 0 14 Z" stroke="#e8703a" stroke-width="1.8" fill="#fff8e8"/>
+      <circle cx="14" cy="16" r="2" fill="#2a2138"/><circle cx="25" cy="16" r="2" fill="#2a2138"/><circle cx="36" cy="16" r="2" fill="#2a2138"/>
     </g>`;
   }
-  const dotsId = 'dots'+scene.num.replace(/[^a-zA-Z0-9]/g,'')+Math.floor(rand()*9999);
+  const textureId = 'paper'+scene.num.replace(/[^a-zA-Z0-9]/g,'')+Math.floor(rand()*9999);
 
   return `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <linearGradient id="bg${dotsId}" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="${g1}"/>
-        <stop offset="100%" stop-color="${g2}"/>
-      </linearGradient>
-      <pattern id="${dotsId}" width="9" height="9" patternUnits="userSpaceOnUse">
-        <circle cx="2" cy="2" r="1.1" fill="#000" opacity="0.18"/>
+      <pattern id="${textureId}" width="7" height="7" patternUnits="userSpaceOnUse">
+        <path d="M0 6 L7 6 M6 0 L6 7" stroke="#2a2138" stroke-width=".35" opacity=".07"/>
       </pattern>
     </defs>
-    <rect width="${W}" height="${H}" fill="url(#bg${dotsId})"/>
-    <rect width="${W}" height="${H}" fill="url(#${dotsId})"/>
-    <g opacity="0.5">
-      <line x1="${W/3}" y1="0" x2="${W/3}" y2="${H}" stroke="#fff" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.15"/>
-      <line x1="${2*W/3}" y1="0" x2="${2*W/3}" y2="${H}" stroke="#fff" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.15"/>
-      <line x1="0" y1="${H/3}" x2="${W}" y2="${H/3}" stroke="#fff" stroke-width="0.5" stroke-dasharray="3 5" opacity="0.12"/>
-    </g>
-    <text x="14" y="32" font-size="30" opacity="0.5">${icon}</text>
+    <rect width="${W}" height="${H}" fill="#fbf6ea"/>
+    <rect width="${W}" height="${H}" fill="url(#${textureId})"/>
+    <rect x="10" y="10" width="${W-20}" height="${H-20}" fill="none" stroke="#2a2138" stroke-width="1.2" opacity=".55"/>
+    <g opacity=".96">${set}</g>
     ${speedLines}
     ${figures}
     ${talkMark}
-    <rect x="0" y="${H-26}" width="${W}" height="26" fill="#0d0a1c" opacity="0.55"/>
-    <text x="12" y="${H-9}" font-family="Space Mono,monospace" font-size="10.5" fill="#f0b94d" letter-spacing="1">SC.${escapeXML(scene.num)} · ${escapeXML(shotLabel)}</text>
-    <text x="${W-10}" y="${H-9}" font-family="Space Mono,monospace" font-size="10" fill="#f4ead9" opacity="0.7" text-anchor="end">${escapeXML(scene.location)}</text>
+    <rect x="10" y="${H-31}" width="${W-20}" height="21" fill="#fff8e8" stroke="#2a2138" stroke-width="1" opacity=".92"/>
+    <text x="18" y="${H-16}" font-family="Space Mono,monospace" font-size="10.5" fill="#2a2138" letter-spacing="1">SC.${escapeXML(scene.num)} · ${escapeXML(shotLabel)} SKETCH</text>
+    <text x="${W-18}" y="${H-16}" font-family="Noto Serif KR,serif" font-size="9.5" fill="#5a5147" opacity="0.78" text-anchor="end">${escapeXML(scene.location)}</text>
   </svg>`;
 }
 
@@ -487,23 +582,51 @@ class Flipbook{
 let SCENES = [], CAST = [], LOCATIONS = [];
 let scriptBook, storyBook;
 
-function sceneScriptPageHTML(s){
-  const descHtml = s.description.map(p=>{
+function dialogueSpeakerName(speaker){
+  return speaker.replace(/\s*\(NA\)\s*/g, ' NA').trim();
+}
+function dialogueColorKey(speaker){
+  return speaker.replace(/\s*\(NA\)\s*/g, '').split(',')[0].trim();
+}
+function dialogueLineHTML(d){
+  const label = dialogueSpeakerName(d.speaker);
+  const col = charColor(dialogueColorKey(d.speaker));
+  return `<p class="script-dialogue"><span class="script-speaker" style="color:${col}">${escapeXML(label)}</span>${escapeXML(d.line)}</p>`;
+}
+function scriptBodyHTML(s){
+  const parts = [];
+  const desc = s.description || [];
+  const dialogue = s.dialogue || [];
+  let dIdx = 0;
+  desc.forEach((p, i)=>{
     const cls = p.startsWith('[') ? 'na' : '';
-    return `<p class="${cls}">${escapeXML(p)}</p>`;
-  }).join('');
-  const dlgHtml = s.dialogue.map(d=>{
-    const isNA = !!d.na;
-    return `<p class="sp-dline ${isNA?'na':''}"><span class="sp-speaker" style="color:${charColor(d.speaker.replace(' (NA)',''))}">${escapeXML(d.speaker)}</span> — ${escapeXML(d.line)}</p>`;
-  }).join('');
+    parts.push(`<p class="${cls}">${escapeXML(p)}</p>`);
+    let take = 0;
+    if(dialogue.length <= desc.length){
+      take = i < dialogue.length ? 1 : 0;
+    } else {
+      const target = Math.floor(((i + 1) * dialogue.length) / desc.length);
+      take = target - dIdx;
+    }
+    for(let j=0; j<take && dIdx<dialogue.length; j++, dIdx++){
+      parts.push(dialogueLineHTML(dialogue[dIdx]));
+    }
+  });
+  while(dIdx < dialogue.length){
+    parts.push(dialogueLineHTML(dialogue[dIdx++]));
+  }
+  return parts.join('');
+}
+
+function sceneScriptPageHTML(s){
+  const scriptHtml = scriptBodyHTML(s);
   return `<div class="book-page">
     <div class="sp-header">
       <span class="sp-num">SC.${escapeXML(s.num)}</span>
       <span class="sp-loc">${escapeXML(s.location)} · ${escapeXML(s.time||'-')}</span>
       <span class="sp-title">${escapeXML(s.title)}</span>
     </div>
-    <div class="sp-desc">${descHtml || '<p style="opacity:.4">(지문 없음)</p>'}</div>
-    ${dlgHtml ? `<div class="sp-dialogue">${dlgHtml}</div>` : ''}
+    <div class="sp-desc">${scriptHtml || '<p style="opacity:.4">(본문 없음)</p>'}</div>
     <div class="sp-pagefoot">꼭짓점 · 현장용 대본</div>
   </div>`;
 }
@@ -571,7 +694,7 @@ function renderCastView(){
   el.innerHTML = CAST.map(c=>{
     const idxs = sceneIndicesForChar(c.key);
     const col = charColor(c.key);
-    const pills = idxs.slice(0,14).map(i=>`<span class="scene-pill" data-tab-goto="storybook:${i}">${SCENES[i].num}</span>`).join('');
+    const pills = idxs.map(i=>`<button class="scene-pill" type="button" data-tab-goto="storybook:${i}">${SCENES[i].num}</button>`).join('');
     return `<div class="card">
       <div class="card-head">
         <div class="card-avatar" style="background:${col}">${c.name.slice(0,1)}</div>
@@ -583,7 +706,7 @@ function renderCastView(){
       <div class="card-actor">출연 ${escapeXML(c.actor)}</div>
       <div class="card-desc">${escapeXML(c.desc)}</div>
       <div class="card-count">등장 ${idxs.length}씬</div>
-      <div class="card-scenes">${pills}${idxs.length>14?`<span class="scene-pill">+${idxs.length-14}</span>`:''}</div>
+      <div class="card-scenes">${pills}</div>
     </div>`;
   }).join('');
   el.querySelectorAll('[data-tab-goto]').forEach(elm=>{
@@ -599,7 +722,8 @@ function renderLocationsView(){
   const el = document.getElementById('locGrid');
   el.innerHTML = LOCATIONS.map(loc=>{
     const idxs = []; SCENES.forEach((s,i)=>{ if(locGroupKey(s.location)===loc.key) idxs.push(i); });
-    const pills = idxs.slice(0,16).map(i=>`<span class="scene-pill" data-tab-goto="storybook:${i}">${SCENES[i].num}</span>`).join('');
+    const pills = idxs.map(i=>`<button class="scene-pill" type="button" data-tab-goto="storybook:${i}">${SCENES[i].num}</button>`).join('');
+    const isBundle = idxs.length > 1;
     return `<div class="card">
       <div class="card-head">
         <div class="card-icon">${loc.icon}</div>
@@ -607,9 +731,11 @@ function renderLocationsView(){
           <div class="card-name">${escapeXML(loc.label)}</div>
         </div>
       </div>
+      ${isBundle ? '<div class="bundle-badge">제안 묶음</div>' : ''}
       <div class="card-desc">${escapeXML(loc.desc)}</div>
       <div class="card-count">등장 ${idxs.length}씬</div>
-      <div class="card-scenes">${pills}${idxs.length>16?`<span class="scene-pill">+${idxs.length-16}</span>`:''}</div>
+      <div class="card-note">${isBundle ? '이 장소에 걸린 씬을 아래에 모두 표기했습니다. 전체를 훑어본 뒤 번호를 누르면 해당 콘티북 씬으로 이동합니다.' : '아래 씬 번호를 누르면 해당 콘티북 씬으로 이동합니다.'}</div>
+      <div class="card-scenes">${pills}</div>
     </div>`;
   }).join('');
   el.querySelectorAll('[data-tab-goto]').forEach(elm=>{
